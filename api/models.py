@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Plant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     conditions = models.OneToOneField('Conditions', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     # image = models.ImageField()
+
+    def __str__(self):
+        return f"{self.user}'s {self.name}"
 
     class Meta:
         ordering = ["name", "id"]
@@ -40,6 +44,7 @@ class Conditions(models.Model):
 
     class Meta:
         verbose_name_plural = "Conditions"
+        ordering = ["id"]
 
 
 class UserSettings(models.Model):
@@ -49,3 +54,4 @@ class UserSettings(models.Model):
 
     class Meta:
         verbose_name_plural = "User settings"
+        ordering = ["id"]
