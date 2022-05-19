@@ -5,7 +5,10 @@ from api import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'user-settings', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'plants', views.PlantViewSet)
+router.register(r'conditions', views.ConditionsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
