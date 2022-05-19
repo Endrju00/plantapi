@@ -35,7 +35,7 @@ class PlantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Plant
-        fields = ["user", "name", "conditions"]
+        fields = ["user", "name", "conditions", "image_path"]
 
 
 class UserSettingsSerializer(serializers.ModelSerializer):
