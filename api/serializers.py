@@ -9,6 +9,23 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'username', 'email', 'groups']
 
 
+class CreateUserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'password']
+
+    def save(self):
+        user = User(
+            email=self.validated_data['email'],
+            username=self.validated_data['username'],
+        )
+        user.set_password(self.validated_data['password'])
+        user.save()
+        return user
+
+
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
