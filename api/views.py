@@ -3,13 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 
 from .models import Plant, Conditions, UserSettings
-from .serializers import (
-    UserSerializer,
-    GroupSerializer,
-    PlantSerializer,
-    ConditionsSerializer,
-    UserSettingsSerializer
-)
+from api import serializers
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -26,8 +20,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = serializers.GroupSerializer
 
 
 class PlantViewSet(viewsets.ModelViewSet):
@@ -35,7 +28,7 @@ class PlantViewSet(viewsets.ModelViewSet):
     API endpoint that allows plants to be viewed or edited.
     """
     queryset = Plant.objects.all()
-    serializer_class = PlantSerializer
+    serializer_class = serializers.PlantSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -47,7 +40,7 @@ class ConditionsViewSet(viewsets.ModelViewSet):
     API endpoint that allows conditions to be viewed or edited.
     """
     queryset = Conditions.objects.all()
-    serializer_class = ConditionsSerializer
+    serializer_class = serializers.ConditionsSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -59,7 +52,7 @@ class UserSettingsViewSet(viewsets.ModelViewSet):
     API endpoint that allows user settings to be viewed or edited.
     """
     queryset = UserSettings.objects.all()
-    serializer_class = UserSettingsSerializer
+    serializer_class = serializers.UserSettingsSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
